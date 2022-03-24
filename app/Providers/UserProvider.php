@@ -25,7 +25,7 @@ class UserProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(['dashboard.*'], function ($view) {
+        View::composer(['dashboard.*','errors.*'], function ($view) {
             $view->with(
                 'current_user', Auth::user()
             );

@@ -16,27 +16,27 @@ return [
         [
             'icon' => 'fa fa-th-large',
             'title' => 'Maktablar',
-            'url' => 'javascript:;',
+            'url' => '/dashboard/school/index',
         ],
         [
             'icon' => 'fa fa-th-large',
             'title' => 'Sinflar',
-            'url' => 'javascript:;',
+            'url' => '/dashboard/class/index',
         ],
         [
             'icon' => 'fa fa-th-large',
             'title' => 'Darslar',
-            'url' => 'javascript:;',
+            'url' => '/dashboard/lesson/index',
         ],
         [
             'icon' => 'fa fa-th-large',
             'title' => 'O\'qituvchilar',
-            'url' => 'javascript:;',
+            'url' => '/dashboard/teacher/index',
         ],
         [
             'icon' => 'fa fa-th-large',
             'title' => 'Foydalanuvchilar',
-            'url' => 'javascript:;',
+            'url' => '/dashboard/user/index',
         ],
 
 

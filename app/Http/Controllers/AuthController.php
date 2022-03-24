@@ -108,7 +108,7 @@ class AuthController extends Controller
         $user->last_name = $request['last_name'];
         $user->bio = $request['bio'];
         $user->email = $request['email'];
-        if (isset($request['new_password'])) {
+        if (isset($request['new_password']) and $request['new_password'] != null) {
             $user->password = Hash::make($request['new_password']);
         }
         $user->save();

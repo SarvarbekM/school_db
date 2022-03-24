@@ -13,8 +13,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/',function (){
-   return view('index');
+Route::get('/', function () {
+    return view('index');
 });
 //
 //Route::get('/', function () {
@@ -33,11 +33,58 @@ Route::prefix('dashboard')->middleware('auth')->name('dashboard.')->group(functi
     Route::post('edit_profile', [\App\Http\Controllers\AuthController::class, 'edit_profile'])->name('edit_profile');
     Route::get('about', [\App\Http\Controllers\AuthController::class, 'about'])->name('about');
 
+
+    Route::prefix('school')->name('school.')->group(function () {
+        Route::redirect('/', '/school/index');
+
+        Route::get('index', [\App\Http\Controllers\SchoolController::class, 'index'])->name('index');
+        Route::get('arcade', [\App\Http\Controllers\SchoolController::class, 'arcade'])->name('arcade');
+        Route::post('remove', [\App\Http\Controllers\SchoolController::class, 'remove'])->name('remove');
+        Route::post('add_edit', [\App\Http\Controllers\SchoolController::class, 'add_edit'])->name('add_edit');
+        Route::post('add_class', [\App\Http\Controllers\SchoolController::class, 'add_class'])->name('add_class');
+        Route::post('remove_class', [\App\Http\Controllers\SchoolController::class, 'remove_class'])->name('remove_class');
+    });
+
+    Route::prefix('class')->name('class.')->group(function () {
+        Route::redirect('/', '/class/index');
+
+        Route::get('index', [\App\Http\Controllers\ClassController::class, 'index'])->name('index');
+        Route::get('arcade', [\App\Http\Controllers\ClassController::class, 'arcade'])->name('arcade');
+        Route::post('remove', [\App\Http\Controllers\ClassController::class, 'remove'])->name('remove');
+        Route::post('add_edit', [\App\Http\Controllers\ClassController::class, 'add_edit'])->name('add_edit');
+        Route::post('add_lesson', [\App\Http\Controllers\ClassController::class, 'add_lesson'])->name('add_lesson');
+        Route::post('remove_lesson', [\App\Http\Controllers\ClassController::class, 'remove_lesson'])->name('remove_lesson');
+    });
+
+    Route::prefix('lesson')->name('lesson.')->group(function () {
+        Route::redirect('/', '/lesson/index');
+
+        Route::get('index', [\App\Http\Controllers\LessonController::class, 'index'])->name('index');
+        Route::post('remove', [\App\Http\Controllers\LessonController::class, 'remove'])->name('remove');
+        Route::post('add_edit', [\App\Http\Controllers\LessonController::class, 'add_edit'])->name('add_edit');
+    });
+
+    Route::prefix('teacher')->name('teacher.')->group(function () {
+        Route::redirect('/', '/teacher/index');
+
+        Route::get('index', [\App\Http\Controllers\TeacherController::class, 'index'])->name('index');
+        Route::post('remove', [\App\Http\Controllers\TeacherController::class, 'remove'])->name('remove');
+        Route::post('add_edit', [\App\Http\Controllers\TeacherController::class, 'add_edit'])->name('add_edit');
+    });
+
+    Route::prefix('user')->name('user.')->group(function () {
+        Route::redirect('/', '/user/index');
+
+        Route::get('index', [\App\Http\Controllers\UserController::class, 'index'])->name('index');
+        Route::post('remove', [\App\Http\Controllers\UserController::class, 'remove'])->name('remove');
+        Route::post('add_edit', [\App\Http\Controllers\UserController::class, 'add_edit'])->name('add_edit');
+    });
+
+
     Route::get('/v1', function () {
         return view('pages/dashboard-v1');
     });
 });
-
 
 
 //
