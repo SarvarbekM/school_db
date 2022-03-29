@@ -25,7 +25,8 @@
                     <ul class="nav nav-profile">
                         <li><a href="{{route('dashboard.profile')}}"><i class="fa fa-cog"></i> Sozlamalar</a></li>
                         {{--					<li><a href="javascript:;"><i class="fa fa-pencil-alt"></i> Send Feedback</a></li>--}}
-                        <li><a href="{{route('dashboard.about')}}"><i class="fa fa-question-circle"></i> Dastur haqida</a></li>
+                        <li><a href="{{route('dashboard.about')}}"><i class="fa fa-question-circle"></i> Dastur
+                                haqida</a></li>
                     </ul>
                 </li>
             </ul>
@@ -83,6 +84,12 @@
             }
 
             foreach (config('sidebar.menu') as $key => $menu) {
+                $has_permission=1;
+                if(!empty($menu['permission_key'])){
+                    $has_permission=\App\Models\Utility::hasPermission($menu['permission_key']);
+                }
+
+                if($has_permission){
                 $GLOBALS['parent_active'] = '';
 
                 $hasSub = (!empty($menu['sub_menu'])) ? 'has-sub' : '';
@@ -115,6 +122,7 @@
                         '. $subMenu .'
                     </li>
                 ';
+                }
             }
         @endphp
         <!-- begin sidebar minify button -->

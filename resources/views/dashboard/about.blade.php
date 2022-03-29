@@ -3,6 +3,9 @@
 @section('title', 'Dastur haqida')
 
 @section('content')
+
+    @include('includes.errors')
+
     <div class="panel panel-inverse m-t-20">
         <!-- begin panel-heading -->
         <div class="panel-heading">

@@ -14,26 +14,31 @@ return [
     */
     'menu' => [
         [
+            'permission_key'=>'',
             'icon' => 'fa fa-th-large',
             'title' => 'Maktablar',
             'url' => '/dashboard/school/index',
         ],
         [
+            'permission_key'=>'',
             'icon' => 'fa fa-th-large',
             'title' => 'Sinflar',
             'url' => '/dashboard/class/index',
         ],
         [
+            'permission_key'=>'',
             'icon' => 'fa fa-th-large',
             'title' => 'Darslar',
             'url' => '/dashboard/lesson/index',
         ],
         [
+            'permission_key'=>'',
             'icon' => 'fa fa-th-large',
             'title' => 'O\'qituvchilar',
             'url' => '/dashboard/teacher/index',
         ],
         [
+            'permission_key'=>'admin',
             'icon' => 'fa fa-th-large',
             'title' => 'Foydalanuvchilar',
             'url' => '/dashboard/user/index',

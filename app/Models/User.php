@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -18,7 +19,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $guarded=[];
+    protected $guarded = [];
 //    protected $fillable = [
 //        'name',
 //        'email',
@@ -43,4 +44,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function getBuilder($first_name, $last_name, $bio, $email)
+    {
+        $objects = self::on();
+        if (!empty($first_name)) {
+            $objects = $objects->where('first_name', 'LIKE', '%' . $first_name . '%');
+        }
+        if (!empty($last_name)) {
+            $objects = $objects->where('last_name', 'LIKE', '%' . $last_name . '%');
+        }
+        if (!empty($bio)) {
+            $objects = $objects->where('bio', 'LIKE', '%' . $bio . '%');
+        }
+        if (!empty($email)) {
+            $objects = $objects->where('email', 'LIKE', '%' . $email . '%');
+        }
+        $objects=$objects->whereKeyNot(Auth::id());
+        $objects = $objects->orderBy('first_name');
+        return $objects;
+    }
 }

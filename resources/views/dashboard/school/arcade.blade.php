@@ -3,6 +3,8 @@
 @section('title', $object->name)
 
 @section('content')
+    @include('includes.errors')
+
     <div class="panel panel-inverse">
         <!-- begin panel-heading -->
         <div class="panel-heading">

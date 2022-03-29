@@ -4,6 +4,8 @@
 
 @section('content')
 
+    @include('includes.errors')
+
     <div class="profile-header">
         <!-- BEGIN profile-header-cover -->
         <div class="profile-header-cover"></div>

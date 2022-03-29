@@ -72,10 +72,11 @@ Route::prefix('dashboard')->middleware('auth')->name('dashboard.')->group(functi
         Route::post('add_edit', [\App\Http\Controllers\TeacherController::class, 'add_edit'])->name('add_edit');
     });
 
-    Route::prefix('user')->name('user.')->group(function () {
+    Route::prefix('user')->middleware('admin')->name('user.')->group(function () {
         Route::redirect('/', '/user/index');
 
         Route::get('index', [\App\Http\Controllers\UserController::class, 'index'])->name('index');
+        Route::get('arcade', [\App\Http\Controllers\UserController::class, 'arcade'])->name('arcade');
         Route::post('remove', [\App\Http\Controllers\UserController::class, 'remove'])->name('remove');
         Route::post('add_edit', [\App\Http\Controllers\UserController::class, 'add_edit'])->name('add_edit');
     });

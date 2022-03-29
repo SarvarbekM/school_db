@@ -12,14 +12,9 @@
                 Foydalanuvchilar ro'yxati
             </h4>
             <div class="panel-heading-btn">
-{{--                <button class="btn btn-xs btn-success m-l-10"--}}
-{{--                        data-record-id="0"--}}
-{{--                        data-record-speciality=""--}}
-{{--                        data-record-fullname=""--}}
-{{--                        data-record-address=""--}}
-{{--                        data-toggle="modal" data-target="#add_edit_modal">--}}
-{{--                    <i class="fa fa-plus"></i> Qo'shish--}}
-{{--                </button>--}}
+                <a class="btn btn-xs btn-success m-l-10"
+                   href="{{route('dashboard.user.arcade',['id'=>0])}}"
+                ><i class="fa fa-plus"></i> Qo'shish</a>
 
                 <a href="javascript:;" class="m-l-10 btn btn-xs btn-icon btn-circle btn-warning"
                    data-click="panel-collapse"><i
@@ -69,7 +64,7 @@
                     <th class="text-nowrap bg-light-darker">Familiya</th>
                     <th class="text-nowrap bg-light-darker">Bio</th>
                     <th class="text-nowrap bg-light-darker">Email</th>
-{{--                    <th style="width: 130px;" data-orderable="false" class="bg-light-darker"></th>--}}
+                    <th style="width: 130px;" data-orderable="false" class="bg-light-darker"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -80,42 +75,32 @@
                         <td>{{$item->last_name}}</td>
                         <td>{{$item->bio}}</td>
                         <td>{{$item->email}}</td>
-{{--                        <td style="text-align: center;">--}}
-{{--                            <button title="Tahrirlash"--}}
-{{--                                    class="btn btn-icon btn-primary mr-1 edit"--}}
-{{--                                    data-record-id="{{$item->id}}"--}}
-{{--                                    data-record-speciality="{{$item->speciality}}"--}}
-{{--                                    data-record-fullname="{{$item->full_name}}"--}}
-{{--                                    data-record-address="{{$item->address}}"--}}
-{{--                                    data-toggle="modal" data-target="#add_edit_modal"--}}
-{{--                            >--}}
-{{--                                <i class="fa fa-edit"></i>--}}
-{{--                            </button>--}}
-{{--                            <button--}}
-{{--                                title="O'chirish" type="button"--}}
-{{--                                class="btn btn-icon btn-danger delete_button delete infoU"--}}
-{{--                                data-record-id="{{$item->id}}"--}}
-{{--                                data-record-title="{{$item->full_name}}"--}}
-{{--                                data-toggle="modal" data-target="#confirm-delete"--}}
-{{--                            >--}}
-{{--                                <i class="fas fa-trash  text-white"></i>--}}
-{{--                            </button>--}}
-{{--                        </td>--}}
+                        <td style="text-align: center;">
+                            <a title="Tahrirlash"
+                               class="btn btn-icon btn-primary mr-1 edit"
+                               href="{{route('dashboard.user.arcade',['id'=>$item->id])}}"
+                            >
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <button
+                                title="O'chirish" type="button"
+                                class="btn btn-icon btn-danger delete_button delete infoU"
+                                data-record-id="{{$item->id}}"
+                                data-record-title="{{$item->first_name.' '.$item->last_name}}"
+                                data-toggle="modal" data-target="#confirm-delete"
+                            >
+                                <i class="fas fa-trash  text-white"></i>
+                            </button>
+                        </td>
                     </tr>
                 @endforeach
 
                 </tbody>
             </table>
-
-
-            {{trans('content.pagination', ['start_index'=>($objects->currentpage()-1)*$objects->perpage() + ($objects->total()==0?0:1),
-    'end_index'=>($objects->currentpage()-1)*$objects->perpage() + count($objects->items()),'total'=>$objects->total()])}}
-            <div class="float-right">{{$objects->withQueryString()->links()}}</div>
         </div>
         <!-- end panel-body -->
     </div>
-{{--    @include('includes.teacher.delete_modal')--}}
-{{--    @include('includes.teacher.add_edit_modal')--}}
+    @include('includes.user.delete_modal')
 @endsection
 
 @push('scripts')
@@ -126,14 +111,6 @@
             let data = $(e.relatedTarget).data();
             $('.title', this).text(data.recordTitle);
             document.getElementById('id').value = data.recordId;
-        });
-
-        $('#add_edit_modal').on('show.bs.modal', function (e) {
-            let data = $(e.relatedTarget).data();
-            document.getElementById('add_edit_id').value = data.recordId;
-            document.getElementById('add_edit_full_name').value = data.recordFullname;
-            document.getElementById('add_edit_address').value = data.recordAddress;
-            document.getElementById('add_edit_speciality').value = data.recordSpeciality;
         });
     </script>
 @endpush
